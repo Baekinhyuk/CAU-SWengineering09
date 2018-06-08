@@ -30,10 +30,6 @@ public class FileHandler {
 		}
 	}
 	
-	public void fileSave() {
-	
-	}
-	
 	public File getFile() {
 		return openFile;
 	}

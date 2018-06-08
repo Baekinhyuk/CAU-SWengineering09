@@ -3,7 +3,9 @@ package menu;
 public class Mainmenu {
 
 	public static void main(String[] args) {
-		new Menu();
+		Fileview view = new Fileview();
+		Filemodel model = new Filemodel();
+	    new Filecontroller(view, model);
 	}
 
 }

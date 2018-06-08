@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class FileLoader {
 
-	FileHandler fileSearch = new FileHandler();
-	File fileLoad;
+	private FileHandler fileSearch = new FileHandler();
+	private File fileLoad;
 	
 	FileLoader(){
 		
@@ -44,5 +44,13 @@ public class FileLoader {
 	
 	public String getDirectory() {
 		return fileLoad.getAbsolutePath();
+	}
+	
+	public File getFile() {
+		return fileLoad;
+	}
+	
+	public void setFile(File file) {
+		this.fileLoad = file;
 	}
 }

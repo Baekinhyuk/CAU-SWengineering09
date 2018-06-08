@@ -7,18 +7,19 @@ import java.io.FileWriter;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileSave {
 	private int isSave;
+	private File savefile;
 	
 	FileSave(){}
-	FileSave(File f,JTextArea TA){
+	FileSave(File f,JTextPane TA){
 		fileSave(f,TA);
 	}
 	
-	public void fileSave(File f,JTextArea TA) {
+	public void fileSave(File f,JTextPane TA) {
 		
 		JFileChooser fileSearch;
 		if(f == null){
@@ -37,6 +38,11 @@ public class FileSave {
 		if(f != null){
 			//불러온파일이 있을경우에는 기본으로 그 파일을 설정해서 저장시 기본적으로 그 파일에 이름으로 저장하도록설정
 			fileSearch.setSelectedFile(f);
+		}
+		else{
+			//처음에 파일이 비어있을경우 이렇게 설정해서 저장시 .txt로 표현되도록 설정하려고 빈파일경로를 .txt로해서 이름으로설정
+			savefile = new File(".txt");
+			fileSearch.setSelectedFile(savefile);
 		}
 		
 		isSave = fileSearch.showSaveDialog(null); // 탐색기 열기
@@ -62,7 +68,7 @@ public class FileSave {
 		}
 	}
 	
-	private void textSave(File f,JTextArea TA){
+	private void textSave(File f,JTextPane TA){
 		try{
 			//기본적으로 텍스트에리어에 있는 파일을 쭉읽어서 파일에 저장
 			FileWriter FW = new FileWriter(f);
@@ -79,7 +85,16 @@ public class FileSave {
 			}
 			BW.close();
 			FW.close();
+			savefile = f;
 		}catch(Exception e1){}
 		
+	}
+	
+	public File getFile() {
+		return savefile;
+	}
+	
+	public void setFile(File file) {
+		savefile = file;
 	}
 }
